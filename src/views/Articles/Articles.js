@@ -1,28 +1,40 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { getSportArticles } from "./actions";
+import { getSportArticles, getFashionArticles } from "./actions";
 import List from "Components/List";
 
-function Articles({ onInitSportArticles, sportArticles, error }) {
+function Articles({
+  error,
+  onInitFashionArticles,
+  onInitSportArticles,
+  sportArticles,
+  fashionArticles,
+}) {
   useEffect(() => {
     onInitSportArticles();
+    onInitFashionArticles();
   }, []);
 
   return (
     <>
       <div>Article</div>
-      {error ? error : <List sportArticles={sportArticles} />}
+      {error ? (
+        error
+      ) : (
+        <List articles={[...sportArticles, ...fashionArticles]} />
+      )}
     </>
   );
 }
 
-const mapStateToProps = ({ sportArticles, error }) => {
-  return { sportArticles, error };
+const mapStateToProps = ({ sportArticles, fashionArticles, error }) => {
+  return { sportArticles, fashionArticles, error };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onInitSportArticles: () => dispatch(getSportArticles()),
+  onInitFashionArticles: () => dispatch(getFashionArticles()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);

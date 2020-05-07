@@ -2,11 +2,17 @@ import React from "react";
 
 import ListItem from "./components/ListItem";
 
-function List({ sportArticles }) {
+function List({ articles }) {
   return (
     <div>
-      {sportArticles.map(({ date, image, preamble, title }) => (
-        <ListItem date={date} image={image} preamble={preamble} title={title} />
+      {articles.map(({ date, image, preamble, title, id }) => (
+        <ListItem
+          date={date}
+          image={image}
+          key={id}
+          preamble={preamble}
+          title={title}
+        />
       ))}
     </div>
   );
