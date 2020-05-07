@@ -15,6 +15,7 @@ function Articles({
   const [articles, setArticles] = useState(sportArticles);
   const [isSportFilterChecked, setSportFilterChecked] = useState(false);
   const [isFashionFilterChecked, setFashionFilterChecked] = useState(false);
+  const [sorting, setSorting] = useState("ASC");
 
   useEffect(() => {
     onInitSportArticles();
@@ -34,8 +35,28 @@ function Articles({
       ? fashionArticles
       : [];
 
-    setArticles([...displayedSportArticles, ...displayedFashionArticles]);
+    sortArticles([...displayedSportArticles, ...displayedFashionArticles]);
   }, [isSportFilterChecked, isFashionFilterChecked]);
+
+  useEffect(() => {
+    const sortedArticles = [...articles].reverse();
+    setArticles(sortedArticles);
+  }, [sorting]);
+
+  function sortArticles(articlesToSort) {
+    const sortedArticles = articlesToSort.sort((a, b) =>
+      sorting === "ASC"
+        ? a.date.localeCompare(b.date)
+        : b.date.localeCompare(a.date)
+    );
+
+    setArticles(sortedArticles);
+  }
+
+  function changeSortDirection() {
+    if (sorting === "ASC") setSorting("DESC");
+    if (sorting === "DESC") setSorting("ASC");
+  }
 
   return (
     <>
@@ -53,6 +74,9 @@ function Articles({
           onChange={() => setFashionFilterChecked(!isFashionFilterChecked)}
           checked={isFashionFilterChecked}
         />
+      </div>
+      <div>
+        <div onClick={() => changeSortDirection()}>Sort by date</div>
       </div>
       {error ? error : <List articles={articles} />}
     </>
