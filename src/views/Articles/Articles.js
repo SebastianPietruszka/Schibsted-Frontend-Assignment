@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
-import { getSportArticles, getFashionArticles } from "./actions";
+import {
+  getFashionArticles as getFashionArticlesAction,
+  getSportArticles as getSportArticlesAction
+} from "./actions";
+
 import List from "Components/List";
 import Input from "Components/Input";
 
@@ -9,10 +13,10 @@ import "./Articles.scss";
 
 function Articles({
   error,
-  onInitFashionArticles,
-  onInitSportArticles,
-  sportArticles,
-  fashionArticles
+  fashionArticles,
+  getFashionArticles,
+  getSportArticles,
+  sportArticles
 }) {
   const [articles, setArticles] = useState(sportArticles);
   const [isSportFilterChecked, setSportFilterChecked] = useState(false);
@@ -20,8 +24,8 @@ function Articles({
   const [sorting, setSorting] = useState("ASC");
 
   useEffect(() => {
-    onInitSportArticles();
-    onInitFashionArticles();
+    getSportArticles();
+    getFashionArticles();
   }, []);
 
   useEffect(() => {
@@ -101,9 +105,9 @@ const mapStateToProps = ({ sportArticles, fashionArticles, error }) => {
   return { sportArticles, fashionArticles, error };
 };
 
-const mapDispatchToProps = dispatch => ({
-  onInitSportArticles: () => dispatch(getSportArticles()),
-  onInitFashionArticles: () => dispatch(getFashionArticles())
-});
+const mapDispatchToProps = {
+  getFashionArticles: getFashionArticlesAction,
+  getSportArticles: getSportArticlesAction
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);

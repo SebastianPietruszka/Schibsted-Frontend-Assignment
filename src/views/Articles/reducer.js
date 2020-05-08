@@ -1,50 +1,43 @@
-import {
-  GET_SPORT_ARTICLES_START,
-  SET_SPORT_ARTICLES_FAILED,
-  SET_SPORT_ARTICLES,
-  GET_FASHION_ARTICLES_START,
-  SET_FASHION_ARTICLES_FAILED,
-  SET_FASHION_ARTICLES,
-} from "./constants";
+import { GET_SPORT_ARTICLES, GET_FASHION_ARTICLES } from "./constants";
 
 const initialState = {
   sportArticlesFetching: false,
   sportArticles: [],
   fashionArticlesFetching: false,
   fashionArticles: [],
-  error: "",
+  error: ""
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case GET_SPORT_ARTICLES_START:
+    case `${GET_SPORT_ARTICLES}_START`:
       return { ...state, sportArticlesFetching: true };
-    case SET_SPORT_ARTICLES:
+    case `${GET_SPORT_ARTICLES}_FULFILLED`:
       return {
         ...state,
         sportArticlesFetching: false,
-        sportArticles: action.sportArticles.articles,
+        sportArticles: action.payload.articles
       };
-    case SET_SPORT_ARTICLES_FAILED:
+    case `${GET_SPORT_ARTICLES}_FAILED`:
       return {
         ...state,
         sportArticlesFetching: false,
-        error: "Ooops! Something went wrong. Please contact your administrator",
+        error: "Ooops! Something went wrong. Please contact your administrator"
       };
 
-    case GET_FASHION_ARTICLES_START:
+    case `${GET_FASHION_ARTICLES}_START`:
       return { ...state, fashionArticlesFetching: true };
-    case SET_FASHION_ARTICLES:
+    case `${GET_FASHION_ARTICLES}_FULFILLED`:
       return {
         ...state,
         fashionArticlesFetching: false,
-        fashionArticles: action.fashionArticles.articles,
+        fashionArticles: action.payload.articles
       };
-    case SET_FASHION_ARTICLES_FAILED:
+    case `${GET_FASHION_ARTICLES}_FAILED`:
       return {
         ...state,
         fashionArticlesFetching: false,
-        error: "Ooops! Something went wrong. Please contact your administrator",
+        error: "Ooops! Something went wrong. Please contact your administrator"
       };
 
     default:
