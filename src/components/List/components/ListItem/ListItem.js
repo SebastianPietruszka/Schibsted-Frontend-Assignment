@@ -6,19 +6,19 @@ import "./ListItem.scss";
 function ListItem({ date, image, preamble, title }) {
   return (
     <article className="ListItem">
-      <div className="ListItem__image-container">
+      <picture className="ListItem__image-container">
         <img
           src={image || defaultImage}
-          width="300"
-          height="170"
+          width="220"
+          height="130"
           className="ListItem__image"
           alt="Article image"
         />
-      </div>
+      </picture>
 
-      <div>
+      <div className="ListItem__description">
         <div className="ListItem__title">{title}</div>
-        <div>{date}</div>
+        <div className="ListItem__date">{date}</div>
         <div>{preamble}</div>
       </div>
     </article>

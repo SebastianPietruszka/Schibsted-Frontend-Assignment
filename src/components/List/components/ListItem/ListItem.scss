@@ -1,8 +1,23 @@
 .ListItem {
   display: flex;
   flex: 1 0 auto;
+  margin-bottom: 20px;
+  padding: 5px;
+  -webkit-box-shadow: 3px 6px 13px -5px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: 3px 6px 13px -5px rgba(0, 0, 0, 0.33);
+  box-shadow: 3px 6px 13px -5px rgba(0, 0, 0, 0.33);
+}
+
+.ListItem__description {
+  margin-left: 10px;
 }
 
 .ListItem__title {
-  font-size: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.ListItem__date {
+  margin-bottom: 5px;
 }

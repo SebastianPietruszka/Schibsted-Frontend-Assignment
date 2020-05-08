@@ -5,7 +5,7 @@ import ListItem from "./components/ListItem";
 function List({ articles }) {
   return (
     <div>
-      {articles.map(({ date, image, preamble, title, id }) => (
+      {!!articles.length ? articles.map(({ date, image, preamble, title, id }) => (
         <ListItem
           date={date}
           image={image}
@@ -13,7 +13,7 @@ function List({ articles }) {
           preamble={preamble}
           title={title}
         />
-      ))}
+      )): 'No Articles :('}
     </div>
   );
 }
