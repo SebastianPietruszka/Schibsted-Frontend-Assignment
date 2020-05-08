@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from '../../axios-instance';
+
 import {
   GET_SPORT_ARTICLES_START,
   SET_SPORT_ARTICLES,
@@ -52,7 +53,7 @@ export const getSportArticles = () => {
   return (dispatch) => {
     dispatch(getSportArticlesStart());
     axios
-      .get("http://localhost:6010/articles/sports")
+      .get("/sports")
       .then((response) => dispatch(setSportArticles(response.data)))
       .catch((error) => dispatch(getSportArticlesFailed(error)));
   };
@@ -62,7 +63,7 @@ export const getFashionArticles = () => {
   return (dispatch) => {
     dispatch(getFashionArticlesStart());
     axios
-      .get("http://localhost:6010/articles/fashion")
+      .get("/fashion")
       .then((response) => dispatch(setFashionArticles(response.data)))
       .catch((error) => dispatch(getFashionArticlesFailed(error)));
   };
