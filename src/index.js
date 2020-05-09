@@ -7,6 +7,8 @@ import thunk from "redux-thunk";
 import reducer from "./views/Articles/reducer";
 import Articles from "./views/Articles";
 
+import "./index.scss";
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
