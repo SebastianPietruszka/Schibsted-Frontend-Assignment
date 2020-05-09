@@ -66,32 +66,27 @@ function Articles({
 
   return (
     <div className="Articles">
-      <div className="Articles__controls">
-        <div className="DataSources">
-          <div>Data sources</div>
-          <Input
-            type="checkbox"
-            name="Sport"
-            onChange={() => setSportFilterChecked(!isSportFilterChecked)}
-            checked={isSportFilterChecked}
-          />
-          <Input
-            type="checkbox"
-            name="Fashion"
-            onChange={() => setFashionFilterChecked(!isFashionFilterChecked)}
-            checked={isFashionFilterChecked}
-          />
-        </div>
-        <div className="Sorting">
-          <div
-            className="Sorting__button"
-            onClick={() => changeSortDirection()}
-          >
-            Sort by date
-            <span className="Sorting__arrow">
-              {sorting === "ASC" ? "▲" : "▼"}
-            </span>
-          </div>
+      <div className="DataSources">
+        <div>Data sources</div>
+        <Input
+          type="checkbox"
+          name="Sport"
+          onChange={() => setSportFilterChecked(!isSportFilterChecked)}
+          checked={isSportFilterChecked}
+        />
+        <Input
+          type="checkbox"
+          name="Fashion"
+          onChange={() => setFashionFilterChecked(!isFashionFilterChecked)}
+          checked={isFashionFilterChecked}
+        />
+      </div>
+      <div className="Sorting">
+        <div className="Sorting__button" onClick={() => changeSortDirection()}>
+          Sort by date
+          <span className="Sorting__arrow">
+            {sorting === "ASC" ? "▲" : "▼"}
+          </span>
         </div>
       </div>
       <div className="Articles__list">

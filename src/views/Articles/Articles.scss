@@ -1,13 +1,42 @@
 .Articles {
   margin: 2rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
-.Articles__controls {
+.DataSources {
+  flex: 1 0 50%;
+}
+
+.Sorting {
   display: flex;
-  margin: 20px 5px;
-  justify-content: space-between;
+  flex: 1 0 50%;
+  justify-content: flex-end;
+}
+
+.Articles__list {
+  flex: 1 0 100%;
 }
 
 .Sorting__button {
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .DataSources {
+    flex: 1 0 15%;
+    order: 1;
+  }
+
+  .Sorting {
+    flex: 1 0 100%;
+    order: 0;
+    margin-bottom: 10px;
+  }
+
+  .Articles__list {
+    flex: 1 0 85%;
+    order: 2;
+  }
 }
