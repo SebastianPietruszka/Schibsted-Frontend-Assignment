@@ -1,4 +1,5 @@
 import { GET_SPORT_ARTICLES, GET_FASHION_ARTICLES } from "./constants";
+import moment from "moment";
 
 const initialState = {
   sportArticlesFetching: false,
@@ -16,7 +17,10 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         sportArticlesFetching: false,
-        sportArticles: action.payload.articles
+        sportArticles: action.payload.articles.map(article => ({
+          ...article,
+          parsedDate: moment.utc(article.date, "DD. MMM. YYYY hh:mm", "nb")
+        }))
       };
     case `${GET_SPORT_ARTICLES}_FAILED`:
       return {
@@ -31,7 +35,10 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         fashionArticlesFetching: false,
-        fashionArticles: action.payload.articles
+        fashionArticles: action.payload.articles.map(article => ({
+          ...article,
+          parsedDate: moment.utc(article.date, "DD. MMM. YYYY hh:mm", "nb")
+        }))
       };
     case `${GET_FASHION_ARTICLES}_FAILED`:
       return {

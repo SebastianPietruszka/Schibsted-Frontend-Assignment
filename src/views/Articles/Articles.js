@@ -52,8 +52,8 @@ function Articles({
   function sortArticles(articlesToSort) {
     const sortedArticles = articlesToSort.sort((a, b) =>
       sorting === "ASC"
-        ? a.date.localeCompare(b.date)
-        : b.date.localeCompare(a.date)
+        ? a.parsedDate - b.parsedDate
+        : b.parsedDate - a.parsedDate
     );
 
     setArticles(sortedArticles);
